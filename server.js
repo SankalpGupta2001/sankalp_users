@@ -5,7 +5,6 @@ const path = require('path');
 require('dotenv').config();
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'build')));
 const cors = require('cors');
 const UsersControllers = require('./controllers/UsersControllers');
 const UsersDataControllers = require('./controllers/UsersDataControllers');
@@ -16,13 +15,18 @@ connectDB();
 app.use(cors());
 
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+
 
 
 app.use('/app', UsersControllers);
 app.use('/app', UsersDataControllers);
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 const PORT = 5000;

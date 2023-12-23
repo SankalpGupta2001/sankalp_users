@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
 router.post('/signup', async (req, res) => {
     const { name, email, phone, gender, hearAbout, city, state, password } = req.body;
     
-    console.log({ name, email, phone, gender, hearAbout, city, state, password },"heyyyyyyyyy")
+    
   
     if (!name || !email || !phone || !gender || !hearAbout || !city || !state || !password) {
       return res.status(400).json({ message: 'All fields are mandatory' });
